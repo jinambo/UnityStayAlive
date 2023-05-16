@@ -21,7 +21,6 @@ public class Chest : MonoBehaviour {
     Animator animator;
     public Bonus ChestBonus { get; set; }
     private string[] bonuses = new string[] { "HP", "Damage", "Speed" };
-    // public Array<String> Bonus = new string[] { "Health", "Damage", "Speed" };
 
     // Start is called before the first frame update
     void Start() {
@@ -30,7 +29,7 @@ public class Chest : MonoBehaviour {
 
     public void GenerateBonus() {
         string name = bonuses[UnityEngine.Random.Range(0, bonuses.Length)];
-        int value = UnityEngine.Random.Range(1, 11);
+        int value = UnityEngine.Random.Range(1, 100);
 
         ChestBonus = new Bonus(name, value);
     }

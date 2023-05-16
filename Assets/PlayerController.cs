@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro; 
 
 public class PlayerController : MonoBehaviour {
     Animator animator;
     public ContactFilter2D movementFilter;
     public SwordAttack swordAttack;
+    public GameObject bonusText;
     Vector2 movementInput;
     SpriteRenderer spriteRender;
     Rigidbody2D rb;
@@ -17,7 +19,7 @@ public class PlayerController : MonoBehaviour {
         set {
             _health = value;
             print("HP changed: " + value);
-            if (_health <= 0) animator.SetBool("isAlive", false);;
+            if (_health <= 0) animator.SetBool("isAlive", false);
         }
         get { return _health; }
     }
@@ -148,17 +150,28 @@ public class PlayerController : MonoBehaviour {
             chest.GenerateBonus();
             chest.ChestBonus.PrintBonus();
 
+            // Instiantiate BonusText
+            RectTransform bonusTextTransform = Instantiate(bonusText).GetComponent<RectTransform>();
+            bonusTextTransform.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+            TextMeshProUGUI textMeshPro = bonusTextTransform.GetComponent<TextMeshProUGUI>();
+            textMeshPro.text = $"{chest.ChestBonus.Name} +{chest.ChestBonus.Value * 0.1}";
+
             switch (chest.ChestBonus.Name) {
                 case "HP":
-                    Health += chest.ChestBonus.Value;
+                    Health += (float) (chest.ChestBonus.Value * 0.1);
                     break;
                 case "Damage":
-                    swordAttack.Damage += chest.ChestBonus.Value;
+                    swordAttack.Damage += (float) (chest.ChestBonus.Value * 0.1);
                     break;
                 case "Speed":
-                    MoveSpeed += (float) (chest.ChestBonus.Value * 0.1);
+                    MoveSpeed += (float) (chest.ChestBonus.Value * 0.001);
+                    textMeshPro.text = $"{chest.ChestBonus.Name} +{chest.ChestBonus.Value * 0.001}";
                     break;
             }
+
+            // Render text in canvas
+            Canvas canvas = GameObject.FindObjectOfType<Canvas>();
+            bonusTextTransform.SetParent(canvas.transform);
 
             chest.OpenChest();
         }
