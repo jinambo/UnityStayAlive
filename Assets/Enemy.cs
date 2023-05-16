@@ -56,8 +56,8 @@ public class Enemy : MonoBehaviour
 
         Health -= damage;
         rb.AddForce(knockback);
-        print("Damage: " + damage);
-        print("Slime-man took damage: " + Health + " left.");
+        // print("Damage: " + damage);
+        // print("Slime-man took damage: " + Health + " left.");
     }
 
     public void OnCollisionEnter2D(Collision2D collision) {

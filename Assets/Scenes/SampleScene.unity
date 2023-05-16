@@ -3596,8 +3596,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1106034708}
-  spawnRadius: 1
-  spawnInterval: 2
+  spawnRadius: 1.25
+  spawnInterval: 3
 --- !u!4 &511991473
 Transform:
   m_ObjectHideFlags: 0
@@ -3748,7 +3748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chestPrefab: {fileID: 1586628234}
-  spawnRadius: 1
+  spawnRadius: 2
   spawnInterval: 5
 --- !u!4 &888388594
 Transform:
@@ -3876,6 +3876,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!95 &1586628239
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586628234}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4ce7616abb6304f0383d100b4cb5a1a0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1799586760
 GameObject:
   m_ObjectHideFlags: 0
@@ -4264,11 +4284,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6112353543692150495, guid: 91ffea4d335a948679b69086a83f28e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.824
+      value: -4.25
       objectReference: {fileID: 0}
     - target: {fileID: 6112353543692150495, guid: 91ffea4d335a948679b69086a83f28e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.152
+      value: 2.21
       objectReference: {fileID: 0}
     - target: {fileID: 6112353543692150495, guid: 91ffea4d335a948679b69086a83f28e1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4333,11 +4353,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9214063903344099250, guid: dc7e37c5f12584a90886e06884eaf4a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.58727586
+      value: -4.49
       objectReference: {fileID: 0}
     - target: {fileID: 9214063903344099250, guid: dc7e37c5f12584a90886e06884eaf4a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.021173358
+      value: 2.19
       objectReference: {fileID: 0}
     - target: {fileID: 9214063903344099250, guid: dc7e37c5f12584a90886e06884eaf4a9, type: 3}
       propertyPath: m_LocalPosition.z

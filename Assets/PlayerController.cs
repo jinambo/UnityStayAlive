@@ -13,16 +13,26 @@ public class PlayerController : MonoBehaviour {
 
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
-    public float moveSpeed = 1f;
-    public float collisionOffset = 0.01f;
     public float Health {
         set {
             _health = value;
+            print("HP changed: " + value);
             if (_health <= 0) animator.SetBool("isAlive", false);;
         }
         get { return _health; }
     }
+
+    public float MoveSpeed {
+        set {
+            _moveSpeed = value;
+            print("Speed changed: " + value);
+        }
+        get { return _moveSpeed; }  
+    }
+
+    private float _moveSpeed = 1f;
     private float _health = 100;
+    public float collisionOffset = 0.01f;
 
     // Start is called before the first frame update
     void Start() {
@@ -51,7 +61,7 @@ public class PlayerController : MonoBehaviour {
             // Get the mouse position in pixels
             Vector3 mousePos = Input.mousePosition;
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
-            movementInput = worldPos - transform.position * moveSpeed;
+            movementInput = worldPos - transform.position * MoveSpeed;
 
             // Calculate the distance to the mouse position
             float distanceToMouse = Vector2.Distance(transform.position, worldPos);
@@ -91,11 +101,11 @@ public class PlayerController : MonoBehaviour {
                 direction, // X and Y values between -1 and 1
                 movementFilter, // The settings that determine where a collision can occur on such as layers to collide with
                 castCollisions, // List of collisions to store the found collisions into after the Cast is finished
-                moveSpeed * Time.fixedDeltaTime + collisionOffset // the amount to cast equal to the movement plus an offset
+                MoveSpeed * Time.fixedDeltaTime + collisionOffset // the amount to cast equal to the movement plus an offset
             );
             // if there is no collisin, player will move
             if (count == 0) {
-                rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+                rb.MovePosition(rb.position + direction * MoveSpeed * Time.fixedDeltaTime);
                 return true;
             } else {
                 return false;
@@ -106,7 +116,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void OnFire() {
-        print("Attack! Trying to deal damage.");
         animator.SetTrigger("swordAttack");
     }
 
@@ -132,14 +141,33 @@ public class PlayerController : MonoBehaviour {
     //     }
     // }
 
-    public void TakeDamage(float damage) {
-        Health -= damage;
-        print("Damage by enemy: " + damage);
-        print("Your HP: " + Health + "/" + 100);
+    public void OnTriggerEnter2D(Collider2D collider) {
+        // Generate new bonus from the chest after picking it up
+        if (collider.tag == "Chest") {
+            Chest chest = collider.GetComponent<Chest>();
+            chest.GenerateBonus();
+            chest.ChestBonus.PrintBonus();
+
+            switch (chest.ChestBonus.Name) {
+                case "HP":
+                    Health += chest.ChestBonus.Value;
+                    break;
+                case "Damage":
+                    swordAttack.Damage += chest.ChestBonus.Value;
+                    break;
+                case "Speed":
+                    MoveSpeed += (float) (chest.ChestBonus.Value * 0.1);
+                    break;
+            }
+
+            chest.OpenChest();
+        }
     }
 
-    public void OpenChest() {
-        print("Retard taken.");
+    public void TakeDamage(float damage) {
+        Health -= damage;
+        // print("Damage by enemy: " + damage);
+        print("Your HP: " + Health + "/" + 100);
     }
 
     // void OnMove(InputValue movementValue){

@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour {
     IEnumerator SpawnEnemies() {
         while (true) {
             Vector2 spawnPosition = (Vector2)transform.position + Random.insideUnitCircle * spawnRadius;
-            print("Spawn position: " + spawnPosition);
+            // print("Spawn position: " + spawnPosition);
 
             GameObject newEnemyPrefab = enemyPrefab;
 

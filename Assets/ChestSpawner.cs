@@ -13,7 +13,7 @@ public class ChestSpawner : MonoBehaviour {
     IEnumerator SpawnChests() {
         while (true) {
             Vector2 spawnPosition = (Vector2)transform.position + Random.insideUnitCircle * spawnRadius;
-            print("Spawn position: " + spawnPosition);
+            // print("Spawn position: " + spawnPosition);
 
             GameObject newChestPrefab = chestPrefab;
 
