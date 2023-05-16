@@ -285,7 +285,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 58222e70d50bd25468f13a13923f769d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 138a945711646054fb11acb17d3a2082, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 415626563}
   - component: {fileID: 415626562}
   - component: {fileID: 415626561}
+  - component: {fileID: 415626564}
   m_Layer: 5
   m_Name: retryBtn
   m_TagString: Untagged
@@ -387,7 +388,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 415626564}
         m_TargetAssemblyTypeName: StartGame, Assembly-CSharp
         m_MethodName: StartGameplay
         m_Mode: 1
@@ -437,6 +438,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 415626559}
   m_CullTransparentMesh: 1
+--- !u!114 &415626564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415626559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c26fd2a2dde7944bb326456e92abd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &496364869
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,8 +510,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: exit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 64ddd92717987424aa8fa24fd5f989b2, type: 2}
-  m_sharedMaterial: {fileID: 6711283437740357224, guid: 64ddd92717987424aa8fa24fd5f989b2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b3b98402793a2a74781ef6591eee8718, type: 2}
+  m_sharedMaterial: {fileID: 6711283437740357224, guid: b3b98402793a2a74781ef6591eee8718, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -632,8 +645,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Score:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 64ddd92717987424aa8fa24fd5f989b2, type: 2}
-  m_sharedMaterial: {fileID: 6711283437740357224, guid: 64ddd92717987424aa8fa24fd5f989b2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b3b98402793a2a74781ef6591eee8718, type: 2}
+  m_sharedMaterial: {fileID: 6711283437740357224, guid: b3b98402793a2a74781ef6591eee8718, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -871,6 +884,7 @@ GameObject:
   - component: {fileID: 1815312821}
   - component: {fileID: 1815312820}
   - component: {fileID: 1815312819}
+  - component: {fileID: 1815312822}
   m_Layer: 5
   m_Name: exitBtn
   m_TagString: Untagged
@@ -943,9 +957,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: StartGame, Assembly-CSharp
-        m_MethodName: StartGameplay
+      - m_Target: {fileID: 1815312822}
+        m_TargetAssemblyTypeName: ExitButton, Assembly-CSharp
+        m_MethodName: QuitApplication
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -993,6 +1007,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815312817}
   m_CullTransparentMesh: 1
+--- !u!114 &1815312822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815312817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e6df999859f8e4c96ab47beac4ba65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2084935540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,8 +1079,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: retry
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 64ddd92717987424aa8fa24fd5f989b2, type: 2}
-  m_sharedMaterial: {fileID: 6711283437740357224, guid: 64ddd92717987424aa8fa24fd5f989b2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b3b98402793a2a74781ef6591eee8718, type: 2}
+  m_sharedMaterial: {fileID: 6711283437740357224, guid: b3b98402793a2a74781ef6591eee8718, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
