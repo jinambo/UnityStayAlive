@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro; 
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class PlayerController : MonoBehaviour {
     Animator animator;
@@ -15,11 +18,20 @@ public class PlayerController : MonoBehaviour {
 
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
+    GameOverScript gameOverScript;
+    public GameObject timePrefab;
+    public static string GOtime;
+
     public float Health {
         set {
             _health = value;
             print("HP changed: " + value);
-            if (_health <= 0) animator.SetBool("isAlive", false);
+            if (_health <= 0) {
+                animator.SetBool("isAlive", false); 
+                TimerCounter timerCounter = timePrefab.GetComponent<TimerCounter>();
+                GOtime = timerCounter.timeFromated;
+                SceneManager.LoadScene("GameOverStage");
+            }
         }
         get { return _health; }
     }
