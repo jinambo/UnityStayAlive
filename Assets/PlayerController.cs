@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
     Animator animator;
@@ -15,14 +17,25 @@ public class PlayerController : MonoBehaviour {
 
     public float moveSpeed = 1f;
     public float collisionOffset = 0.01f;
+
+    GameOverScript gameOverScript;
+    public GameObject timePrefab;
+
+    public static string GOtime;
     public float Health {
         set {
             _health = value;
-            if (_health <= 0) animator.SetBool("isAlive", false);;
+            if (_health <= 0){
+                animator.SetBool("isAlive", false);
+                TimerCounter timerCounter = timePrefab.GetComponent<TimerCounter>();
+                GOtime = timerCounter.timeFromated;
+                SceneManager.LoadScene("GameOverStage");
+            }
         }
         get { return _health; }
     }
-    private float _health = 100;
+    private float _health = 10;
+
 
     // Start is called before the first frame update
     void Start() {
