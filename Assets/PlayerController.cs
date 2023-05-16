@@ -138,6 +138,10 @@ public class PlayerController : MonoBehaviour {
         print("Your HP: " + Health + "/" + 100);
     }
 
+    public void OpenChest() {
+        print("Retard taken.");
+    }
+
     // void OnMove(InputValue movementValue){
     //     movementInput = movementValue.Get<Vector2>();
 

@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour {
 
             // Set the properties of the new enemy
             newEnemy.isActive = true;
-            newEnemy.enemyDamage = Random.Range(1, 11);;
+            newEnemy.enemyDamage = Random.Range(1, 11);
 
             yield return new WaitForSeconds(spawnInterval);
         }
