@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 97326c65ff5e42c449068d6fd21ca7b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b67e2318f6986f84683ca1190683b8e5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 381517704}
   - component: {fileID: 381517703}
   - component: {fileID: 381517702}
-  - component: {fileID: 381517701}
+  - component: {fileID: 381517705}
   m_Layer: 5
   m_Name: ExitBtn
   m_TagString: Untagged
@@ -240,18 +240,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000053406, y: -129}
   m_SizeDelta: {x: 348.4574, y: 97.078}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &381517701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 381517699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c9682210d0d548409022c9bce46bf1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &381517702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,7 +284,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 381517701}
+      - m_Target: {fileID: 381517705}
         m_TargetAssemblyTypeName: ExitButton, Assembly-CSharp
         m_MethodName: QuitApplication
         m_Mode: 1
@@ -346,6 +334,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 381517699}
   m_CullTransparentMesh: 1
+--- !u!114 &381517705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381517699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e6df999859f8e4c96ab47beac4ba65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &461043110
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,8 +577,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Play
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 64ddd92717987424aa8fa24fd5f989b2, type: 2}
-  m_sharedMaterial: {fileID: 6711283437740357224, guid: 64ddd92717987424aa8fa24fd5f989b2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b3b98402793a2a74781ef6591eee8718, type: 2}
+  m_sharedMaterial: {fileID: 6711283437740357224, guid: b3b98402793a2a74781ef6591eee8718, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -712,8 +712,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Exit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 64ddd92717987424aa8fa24fd5f989b2, type: 2}
-  m_sharedMaterial: {fileID: 6711283437740357224, guid: 64ddd92717987424aa8fa24fd5f989b2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b3b98402793a2a74781ef6591eee8718, type: 2}
+  m_sharedMaterial: {fileID: 6711283437740357224, guid: b3b98402793a2a74781ef6591eee8718, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -776,7 +776,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1007058544
@@ -799,7 +799,7 @@ GameObject:
   - component: {fileID: 1495576393}
   - component: {fileID: 1495576392}
   - component: {fileID: 1495576391}
-  - component: {fileID: 1495576390}
+  - component: {fileID: 1495576394}
   m_Layer: 5
   m_Name: PlayBtn
   m_TagString: Untagged
@@ -828,18 +828,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000053406, y: -0.0000019073}
   m_SizeDelta: {x: 348.4574, y: 97.078}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1495576390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495576388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 886ae1de7dae61543a2d0a9f01f0f3a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1495576391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,7 +872,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1495576390}
+      - m_Target: {fileID: 1495576394}
         m_TargetAssemblyTypeName: StartGame, Assembly-CSharp
         m_MethodName: StartGameplay
         m_Mode: 1
@@ -934,6 +922,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495576388}
   m_CullTransparentMesh: 1
+--- !u!114 &1495576394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495576388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c26fd2a2dde7944bb326456e92abd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1503758729
 GameObject:
   m_ObjectHideFlags: 0
