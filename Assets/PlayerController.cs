@@ -2,31 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro; 
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 
 public class PlayerController : MonoBehaviour {
     Animator animator;
     public ContactFilter2D movementFilter;
     public SwordAttack swordAttack;
+    public GameObject bonusText;
     Vector2 movementInput;
     SpriteRenderer spriteRender;
     Rigidbody2D rb;
 
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
-    public float moveSpeed = 1f;
-    public float collisionOffset = 0.01f;
-
     GameOverScript gameOverScript;
     public GameObject timePrefab;
-
     public static string GOtime;
+
     public float Health {
         set {
             _health = value;
-            if (_health <= 0){
-                animator.SetBool("isAlive", false);
+            print("HP changed: " + value);
+            if (_health <= 0) {
+                animator.SetBool("isAlive", false); 
                 TimerCounter timerCounter = timePrefab.GetComponent<TimerCounter>();
                 GOtime = timerCounter.timeFromated;
                 SceneManager.LoadScene("GameOverStage");
@@ -34,8 +35,18 @@ public class PlayerController : MonoBehaviour {
         }
         get { return _health; }
     }
-    private float _health = 10;
 
+    public float MoveSpeed {
+        set {
+            _moveSpeed = value;
+            print("Speed changed: " + value);
+        }
+        get { return _moveSpeed; }  
+    }
+
+    private float _moveSpeed = 1f;
+    private float _health = 100;
+    public float collisionOffset = 0.01f;
 
     // Start is called before the first frame update
     void Start() {
@@ -64,7 +75,7 @@ public class PlayerController : MonoBehaviour {
             // Get the mouse position in pixels
             Vector3 mousePos = Input.mousePosition;
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
-            movementInput = worldPos - transform.position * moveSpeed;
+            movementInput = worldPos - transform.position * MoveSpeed;
 
             // Calculate the distance to the mouse position
             float distanceToMouse = Vector2.Distance(transform.position, worldPos);
@@ -104,11 +115,11 @@ public class PlayerController : MonoBehaviour {
                 direction, // X and Y values between -1 and 1
                 movementFilter, // The settings that determine where a collision can occur on such as layers to collide with
                 castCollisions, // List of collisions to store the found collisions into after the Cast is finished
-                moveSpeed * Time.fixedDeltaTime + collisionOffset // the amount to cast equal to the movement plus an offset
+                MoveSpeed * Time.fixedDeltaTime + collisionOffset // the amount to cast equal to the movement plus an offset
             );
             // if there is no collisin, player will move
             if (count == 0) {
-                rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+                rb.MovePosition(rb.position + direction * MoveSpeed * Time.fixedDeltaTime);
                 return true;
             } else {
                 return false;
@@ -119,7 +130,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void OnFire() {
-        print("Attack! Trying to deal damage.");
         animator.SetTrigger("swordAttack");
     }
 
@@ -145,14 +155,48 @@ public class PlayerController : MonoBehaviour {
     //     }
     // }
 
-    public void TakeDamage(float damage) {
-        Health -= damage;
-        print("Damage by enemy: " + damage);
-        print("Your HP: " + Health + "/" + 100);
+    public void OnTriggerEnter2D(Collider2D collider) {
+        // Generate new bonus from the chest after picking it up
+        if (collider.tag == "Chest") {
+            Chest chest = collider.GetComponent<Chest>();
+            chest.GenerateBonus();
+            chest.ChestBonus.PrintBonus();
+
+            // Instiantiate BonusText
+            RectTransform bonusTextTransform = Instantiate(bonusText).GetComponent<RectTransform>();
+            bonusTextTransform.transform.position = gameObject.transform.position + new Vector3(0, 0.1f, 0);
+
+            // print("Text position: " + bonusTextTransform.transform.position);
+            // print("Players position: " + gameObject.transform.position);
+
+            TextMeshProUGUI textMeshPro = bonusTextTransform.GetComponent<TextMeshProUGUI>();
+            textMeshPro.text = $"{chest.ChestBonus.Name} +{chest.ChestBonus.Value * 0.1}";
+
+            switch (chest.ChestBonus.Name) {
+                case "HP":
+                    Health += (float) (chest.ChestBonus.Value * 0.1);
+                    break;
+                case "Damage":
+                    swordAttack.Damage += (float) (chest.ChestBonus.Value * 0.1);
+                    break;
+                case "Speed":
+                    MoveSpeed += (float) (chest.ChestBonus.Value * 0.001);
+                    textMeshPro.text = $"{chest.ChestBonus.Name} +{chest.ChestBonus.Value * 0.001}";
+                    break;
+            }
+
+            // Render text in canvas
+            Canvas canvas = GameObject.FindObjectOfType<Canvas>();
+            bonusTextTransform.SetParent(canvas.transform);
+
+            chest.OpenChest();
+        }
     }
 
-    public void OpenChest() {
-        print("Retard taken.");
+    public void TakeDamage(float damage) {
+        Health -= damage;
+        // print("Damage by enemy: " + damage);
+        print("Your HP: " + Health + "/" + 100);
     }
 
     // void OnMove(InputValue movementValue){
