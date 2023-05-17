@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     public ContactFilter2D movementFilter;
     public SwordAttack swordAttack;
     public GameObject bonusText;
+    public Image healthBar;
     Vector2 movementInput;
     SpriteRenderer spriteRender;
     Rigidbody2D rb;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour {
     public float Health {
         set {
             _health = value;
+            healthBar.fillAmount = _health / 100f;
             print("HP changed: " + value);
             if (_health <= 0) {
                 animator.SetBool("isAlive", false); 
@@ -45,7 +47,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private float _moveSpeed = 1f;
-    private float _health = 5;
+    private float _health = 100;
     public float collisionOffset = 0.01f;
 
     // Start is called before the first frame update
@@ -170,14 +172,15 @@ public class PlayerController : MonoBehaviour {
             // print("Players position: " + gameObject.transform.position);
 
             TextMeshProUGUI textMeshPro = bonusTextTransform.GetComponent<TextMeshProUGUI>();
-            textMeshPro.text = $"{chest.ChestBonus.Name} +{chest.ChestBonus.Value * 0.1}";
 
             switch (chest.ChestBonus.Name) {
                 case "HP":
-                    Health += (float) (chest.ChestBonus.Value * 0.1);
+                    Health += (float) (chest.ChestBonus.Value * 0.5);
+                    textMeshPro.text = $"{chest.ChestBonus.Name} +{chest.ChestBonus.Value * 0.5}";
                     break;
                 case "Damage":
                     swordAttack.Damage += (float) (chest.ChestBonus.Value * 0.1);
+                    textMeshPro.text = $"{chest.ChestBonus.Name} +{chest.ChestBonus.Value * 0.1}";
                     break;
                 case "Speed":
                     MoveSpeed += (float) (chest.ChestBonus.Value * 0.001);

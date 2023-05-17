@@ -7,5 +7,6 @@ public class StartGame : MonoBehaviour
 {
     public void StartGameplay(){
         SceneManager.LoadScene("SampleScene");
+        PointsScore.globalScore = 0;
     }
 }
