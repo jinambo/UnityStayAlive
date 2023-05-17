@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
     Animator animator;
     Rigidbody2D rb;
-    public float enemyDamage = 1;
+    public float enemyDamage = 5;
     public float detectionRadius = 2f;
     public float chaseSpeed = 0.7f;
     public bool isActive = false;
@@ -22,13 +23,14 @@ public class Enemy : MonoBehaviour
             _health = value;
             if (_health <= 0) {
                 animator.SetBool("isAlive", false);
-                PointsScore.globalScore +=1;
+                PointsScore.globalScore += (int)Math.Ceiling(1 * ((maxHealth + enemyDamage) / 2f) * 0.1);
             }
         }
         get { return _health; }
     }
 
-    private float _health = 50;
+    private float _health;
+    public float maxHealth;
 
     private void Start() {
         animator = GetComponent<Animator>();
@@ -37,6 +39,9 @@ public class Enemy : MonoBehaviour
 
         // Find the player's transform
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
+        Health = maxHealth;
+        print("enemy with health: " + maxHealth);
     }
 
     private void Update() {

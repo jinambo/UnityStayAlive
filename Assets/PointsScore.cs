@@ -29,6 +29,5 @@ public class PointsScore : MonoBehaviour
     void DisplayScore(int score){
         scoreFromated = string.Format($"Score: {score}");
         pointsText.text = scoreFromated;
-
     }
 }

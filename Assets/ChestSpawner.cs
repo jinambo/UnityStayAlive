@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ChestSpawner : MonoBehaviour {
     public GameObject chestPrefab;
-    public float spawnRadius = 2.5f;
+    public float spawnRadius = 3f;
     public float spawnInterval = 15f;
 
     private void Start() {
