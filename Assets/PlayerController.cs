@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private float _moveSpeed = 1f;
-    private float _health = 100;
+    private float _health = 5;
     public float collisionOffset = 0.01f;
 
     // Start is called before the first frame update
