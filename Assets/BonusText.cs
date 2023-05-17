@@ -6,7 +6,7 @@ using TMPro;
 public class BonusText : MonoBehaviour {
     public float timeToLive = 2f;
     public float elapsedTime = 0.0f;
-    public float floatSpeed = 250;
+    public float floatSpeed = 0.5f;
     public Vector3 floatDirection = new Vector3(0, 1, 0);
     public TextMeshPro textMesh;
     RectTransform rTransform;
@@ -20,7 +20,8 @@ public class BonusText : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         elapsedTime += Time.deltaTime;
-        rTransform.position += floatDirection * floatSpeed * Time.deltaTime;
+        rTransform.localScale = new Vector3(1, 1, 1);
+        // rTransform.position += floatDirection * floatSpeed * Time.deltaTime;
 
         if (elapsedTime > timeToLive) Destroy(gameObject);
     }

@@ -164,7 +164,11 @@ public class PlayerController : MonoBehaviour {
 
             // Instiantiate BonusText
             RectTransform bonusTextTransform = Instantiate(bonusText).GetComponent<RectTransform>();
-            bonusTextTransform.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+            bonusTextTransform.transform.position = gameObject.transform.position + new Vector3(0, 0.1f, 0);
+
+            // print("Text position: " + bonusTextTransform.transform.position);
+            // print("Players position: " + gameObject.transform.position);
+
             TextMeshProUGUI textMeshPro = bonusTextTransform.GetComponent<TextMeshProUGUI>();
             textMeshPro.text = $"{chest.ChestBonus.Name} +{chest.ChestBonus.Value * 0.1}";
 
