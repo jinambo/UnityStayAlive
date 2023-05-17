@@ -13,11 +13,17 @@ public class Enemy : MonoBehaviour
 
     private Transform playerTransform;
 
+    GameOverScript gameOverScript;
+    public GameObject timePrefab;
+    public static string GOtime;
     public float Health {
         set {
             if (value < _health) animator.SetTrigger("hit");
             _health = value;
-            if (_health <= 0) animator.SetBool("isAlive", false);
+            if (_health <= 0) {
+                animator.SetBool("isAlive", false);
+                PointsScore.globalScore +=1;
+            }
         }
         get { return _health; }
     }

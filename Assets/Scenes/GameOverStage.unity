@@ -318,6 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 2045344467}
+  scoreText: {fileID: 788724491}
 --- !u!1 &415626559
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,8 +636,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -355, y: 146}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -209.85071, y: 146}
+  m_SizeDelta: {x: 490.2986, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &788724491
 MonoBehaviour:
@@ -660,8 +661,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Score:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b3b98402793a2a74781ef6591eee8718, type: 2}
-  m_sharedMaterial: {fileID: 6711283437740357224, guid: b3b98402793a2a74781ef6591eee8718, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e80c702430c2fd341baff9076a691a20, type: 2}
+  m_sharedMaterial: {fileID: 8068228021354337261, guid: e80c702430c2fd341baff9076a691a20, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
